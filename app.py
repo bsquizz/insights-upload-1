@@ -80,7 +80,7 @@ MQ_GROUP_ID = os.getenv('MQ_GROUP_ID', 'upload')
 kafka_consumer = AIOKafkaConsumer(VALIDATION_QUEUE, loop=IOLoop.current().asyncio_loop,
                                   bootstrap_servers=MQ, group_id=MQ_GROUP_ID)
 kafka_producer = AIOKafkaProducer(loop=IOLoop.current().asyncio_loop, bootstrap_servers=MQ,
-                                  request_timeout_ms=10000, connections_max_idle_ms=None)
+                                  request_timeout_ms=60000, connections_max_idle_ms=None)
 CONSUMER = ReconnectingClient(kafka_consumer, "consumer")
 PRODUCER = ReconnectingClient(kafka_producer, "producer")
 
